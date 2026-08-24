@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow">
+    <title>태양광/전기차(EV) 유지비 및 절감액 계산기</title>
+    <meta name="description" content="우리집 태양광 설치 시 전기요금 절감액과 전기차 유지비 절약 금액을 10초 만에 정확하게 계산해 보세요.">
+    <meta name="keywords" content="태양광 계산기, 전기차 유지비, 전기차 충전요금, 아파트 태양광, 주택 태양광, 가정용 태양광, EV 계산기">
+    <link rel="canonical" href="https://solar.enjoy-onepage.com/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="태양광/전기차(EV) 절감액 계산기">
+    <meta property="og:description" content="우리집 태양광 설치 시 전기요금 절감액과 전기차 유지비를 계산해 보세요.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solar.enjoy-onepage.com/">
+    <meta property="og:image" content="https://solar.enjoy-onepage.com/og-image.png">
+    <link rel="icon" href="favicon.ico">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "태양광 및 전기차 비용/절감액 계산기",
+      "url": "https://solar.enjoy-onepage.com/",
+      "description": "가정용 태양광(3kW, 300W) 설치 및 전기차(EV) 운행 시 월간 유지비와 전기요금 절감액을 계산합니다.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+    
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js" integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0W/3Ith/aP28h2XznbnQhTtcW76S6Gv2Z/E3Q" crossorigin="anonymous"></script>
+    <script>const KAKAO_APP_KEY = '14c518e3b38441055c3c33cb40b9445b';</script>
+
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-light: #E8F5E9;
+            --secondary: #4CAF50;
+            --bg: #F4F7F6;
+            --text: #2C3E50;
+            --light: #7F8C8D;
+            --border: #C8E6C9;
+            --box: #FFFFFF;
+            --highlight: #F57C00;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            padding-bottom: 75px;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 500px;
+            width: 100%;
+            min-height: 100vh;
+            background: var(--box);
+            padding: 20px 20px 40px;
+            box-shadow: 0 0 20px rgba(46, 125, 50, 0.08);
+        }
+
+        .header { text-align: center; margin-bottom: 25px; padding-top: 10px; }
+        .header h1 { font-size: 1.45rem; margin: 0 0 8px; color: var(--text); line-height: 1.3; word-break: keep-all; }
+        .header p { font-size: 0.85rem; color: var(--light); margin: 0; line-height: 1.5; word-break: keep-all; }
+        .badge { display: inline-block; background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; margin-bottom: 10px; }
+
+        .input-group { margin-bottom: 18px; }
+        .input-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+        .input-wrapper { position: relative; }
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #FAFAFC;
+            transition: border-color 0.2s;
+        }
+        .input-wrapper input:focus, .input-wrapper select:focus {
+            outline: none; border-color: var(--primary); background: #fff;
+        }
+        .help-text { font-size: 0.75rem; color: var(--light); margin-top: 5px; margin-bottom: 0; }
+
+        .toggle-group { display: flex; gap: 10px; }
+        .toggle-btn { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; color: var(--light); font-weight: bold; background: #fff; transition: 0.2s; }
+        .toggle-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        .btn-calc {
+            width: 100%; padding: 16px; background: var(--primary); color: #fff; border: none;
+            border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2); transition: transform 0.1s, background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-calc:active { transform: scale(0.98); }
+
+        .result-box {
+            display: none; background: #fff; border: 2px solid var(--primary); border-radius: 16px;
+            padding: 24px; margin-top: 25px; box-shadow: 0 10px 30px rgba(46, 125, 50, 0.1);
+        }
+        .result-box.active { display: block; animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .res-header { text-align: center; margin-bottom: 20px; }
+        .res-header h2 { margin: 0; font-size: 1.2rem; color: var(--primary); }
+        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed var(--border); }
+        .res-row:last-child { border-bottom: none; }
+        .res-label { font-size: 0.9rem; color: var(--light); font-weight: 500; }
+        .res-val { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+        .val-highlight { color: var(--highlight); font-size: 1.4rem; }
+
+        .alert-box { background: var(--primary-light); padding: 14px; border-radius: 10px; margin-top: 20px; font-size: 0.82rem; line-height: 1.6; color: var(--text); }
+        .alert-box strong { color: var(--primary); }
+
+        .ad-box { width: 100%; min-height: 90px; margin: 20px 0; background: var(--box); text-align: center; overflow: hidden; border-radius: 12px; }
+        .sticky-ad { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; max-height: 60px; overflow: hidden; background: #fff; border-top: 1px solid #e0e0e0; z-index: 9999; text-align: center; }
+
+        .action-btns { display: flex; gap: 10px; margin-top: 20px; }
+        .action-btns button { flex: 1; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+        .btn-share { background: #FEE500; color: #000; }
+        .btn-reset { background: var(--bg); color: var(--light); border: 1px solid var(--border); }
+
+        .guides-section { display: none; margin-top: 30px; }
+        .guides-section h3 { font-size: 1.1rem; margin-bottom: 15px; }
+        .guide-cards { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .g-card { padding: 16px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 12px; transition: transform 0.2s; }
+        .g-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+        .g-card-icon { font-size: 1.5rem; }
+        .g-card-text h4 { margin: 0 0 4px; font-size: 0.95rem; }
+        .g-card-text p { margin: 0; font-size: 0.75rem; color: var(--light); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="badge">친환경 에너지 & 유지비 계산</div>
+        <h1>태양광 / 전기차(EV) 절감액 계산기</h1>
+        <p>우리집 태양광을 설치하면 전기요금이 얼마나 줄어들까?<br>전기차 유지비는 한 달에 얼마일까?</p>
+    </div>
+
+    <!-- 폼 -->
+    <div class="input-group">
+        <label>거주 형태 (태양광 종류)</label>
+        <div class="toggle-group" id="homeType">
+            <div class="toggle-btn active" onclick="setHomeType('apt')">아파트 (베란다 300W)</div>
+            <div class="toggle-btn" onclick="setHomeType('house')">단독주택 (가정용 3kW)</div>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label>현재 월 평균 전기요금</label>
+        <div class="input-wrapper">
+            <input type="number" id="elecBill" placeholder="예: 65000">
+        </div>
+        <p class="help-text">여름/겨울을 제외한 봄/가을 평균 요금을 입력하면 정확합니다.</p>
+    </div>
+
+    <div class="input-group">
+        <label>전기차(EV) 운행 여부</label>
+        <div class="toggle-group" id="evToggle">
+            <div class="toggle-btn active" onclick="setEvType('no')">전기차 없음</div>
+            <div class="toggle-btn" onclick="setEvType('yes')">전기차 운행 중</div>
+        </div>
+    </div>
+
+    <div class="input-group" id="evKmGroup" style="display: none;">
+        <label>전기차 월 평균 주행거리 (km)</label>
+        <div class="input-wrapper">
+            <input type="number" id="evKm" placeholder="예: 1500">
+        </div>
+        <p class="help-text">내연기관차 대비 월간 연료비 절감액을 계산해 드립니다.</p>
+    </div>
+
+    <button class="btn-calc" onclick="calculateAll()">💸 예상 절감액 확인하기</button>
+
+    <!-- 결과 화면 상단 광고 (2881798257) -->
+    <div class="ad-box" id="result-ad-box" style="display:none;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="2881798257" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 결과 박스 -->
+    <div class="result-box" id="resultBox">
+        <div class="res-header">
+            <h2>✨ 월간 예상 절감 효과</h2>
+        </div>
+        <div class="res-row">
+            <span class="res-label">기존 월 전기요금</span>
+            <span class="res-val" id="resOldBill">0원</span>
+        </div>
+        <div class="res-row">
+            <span class="res-label">태양광 설치 후 예상 요금</span>
+            <span class="res-val" id="resNewBill">0원</span>
+        </div>
+        <div class="res-row" id="resRowEv" style="display:none;">
+            <span class="res-label">전기차 연료비 절감액 (가솔린 대비)</span>
+            <span class="res-val" id="resEvSave" style="color:#2E7D32;">+ 0원</span>
+        </div>
+        
+        <div class="res-row" style="background:#E8F5E9; padding:15px; border-radius:10px; margin-top:10px; border-bottom:none;">
+            <span class="res-label" style="color:#1B5E20; font-weight:bold;">💰 총 월간 절약 금액</span>
+            <span class="res-val val-highlight" id="resTotalSave" style="color:#1B5E20;">0원</span>
+        </div>
+
+        <div class="alert-box">
+            <strong>🌱 에코 재테크 포인트</strong><br>
+            • 주택용 누진제 구조 특성상, 평소 전기 사용량이 많을수록 <strong>태양광 설치 시 요금 절감 효과가 기하급수적으로 커집니다.</strong><br>
+            • 본 계산은 한국전력 평균 단가를 기준으로 한 모의 계산이며 계절 및 충전기 환경에 따라 오차가 있을 수 있습니다.
+        </div>
+
+        <div class="action-btns">
+            <button class="btn-share" onclick="shareKakao()">카카오톡 결과 공유</button>
+            <button class="btn-reset" onclick="resetForm()">다시 계산</button>
+        </div>
+    </div>
+
+    <!-- 가이드 섹션 (Placeholder) -->
+    <div class="guides-section" id="guidesSection">
+        <h3>💡 태양광 & 전기차 보조금 꿀팁</h3>
+        <div class="guide-cards">
+            <a href="guides/solar-subsidy.html" class="g-card">
+                <div class="g-card-icon">☀️</div>
+                <div class="g-card-text">
+                    <h4>정부/지자체 태양광 보조금 총정리</h4>
+                    <p>내 돈 거의 안 들이고 설치하는 방법</p>
+                </div>
+            </a>
+            <a href="guides/ev-charging.html" class="g-card">
+                <div class="g-card-icon">⚡</div>
+                <div class="g-card-text">
+                    <h4>전기차 충전요금 가장 싼 곳은?</h4>
+                    <p>환경부, 한전, 집밥 요금 완벽 비교</p>
+                </div>
+            </a>
+            <a href="guides/progressive-tax.html" class="g-card">
+                <div class="g-card-icon">📉</div>
+                <div class="g-card-text">
+                    <h4>전기요금 누진제 폭탄 피하는 법</h4>
+                    <p>태양광이 누진제를 박살내는 원리</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 하단 광고 (3205181558) -->
+    <div class="ad-box" style="margin-top: 40px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3205181558" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+</div>
+
+<!-- Sticky 광고 (6629471579 - horizontal 강제 적용) -->
+<div class="sticky-ad">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:block;width:100%;height:60px;" data-ad-client="ca-pub-2228289204702106" data-ad-slot="6629471579" data-ad-format="horizontal" data-full-width-responsive="false"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<script>
+    let currentHome = 'apt';
+    let currentEv = 'no';
+
+    function setHomeType(type) {
+        currentHome = type;
+        const btns = document.getElementById('homeType').children;
+        btns[0].classList.toggle('active', type === 'apt');
+        btns[1].classList.toggle('active', type === 'house');
+    }
+
+    function setEvType(type) {
+        currentEv = type;
+        const btns = document.getElementById('evToggle').children;
+        btns[0].classList.toggle('active', type === 'no');
+        btns[1].classList.toggle('active', type === 'yes');
+        document.getElementById('evKmGroup').style.display = type === 'yes' ? 'block' : 'none';
+    }
+
+    try { Kakao.init(KAKAO_APP_KEY); } catch(e) {}
+
+    // 심플한 한전 전기요금 역산 및 정산 로직 (모의)
+    function calcElec(bill) {
+        // 단가 대략 추정 (누진제 감안)
+        let kwh = 0;
+        if(bill < 20000) kwh = bill / 100;
+        else if(bill < 50000) kwh = 200 + (bill - 20000)/150;
+        else kwh = 400 + (bill - 50000)/250;
+
+        let solarGen = (currentHome === 'apt') ? 35 : 300; // 아파트 35kWh, 주택 300kWh 생산 추정
+        let newKwh = Math.max(0, kwh - solarGen);
+        
+        let newBill = 0;
+        if(newKwh < 200) newBill = newKwh * 100;
+        else if(newKwh < 400) newBill = 20000 + (newKwh-200)*150;
+        else newBill = 50000 + (newKwh-400)*250;
+
+        return {
+            oldBill: bill,
+            newBill: Math.floor(newBill / 10) * 10,
+            solarSave: bill - (Math.floor(newBill / 10) * 10)
+        };
+    }
+
+    function calculateAll() {
+        const bill = parseInt(document.getElementById('elecBill').value) || 0;
+        const evKm = parseInt(document.getElementById('evKm').value) || 0;
+
+        if (bill < 1000) {
+            alert('현재 월 평균 전기요금을 정확히 입력해주세요.');
+            return;
+        }
+
+        const elecRes = calcElec(bill);
+        
+        // EV 절감액 계산 (가솔린 150원/km, 전기 50원/km 추정 -> 차액 100원/km 절감)
+        let evSave = 0;
+        if (currentEv === 'yes') {
+            evSave = evKm * 100;
+            document.getElementById('resRowEv').style.display = 'flex';
+        } else {
+            document.getElementById('resRowEv').style.display = 'none';
+        }
+
+        const totalSave = elecRes.solarSave + evSave;
+
+        document.getElementById('resOldBill').innerText = elecRes.oldBill.toLocaleString() + '원';
+        document.getElementById('resNewBill').innerText = elecRes.newBill.toLocaleString() + '원';
+        document.getElementById('resEvSave').innerText = '+ ' + evSave.toLocaleString() + '원';
+        document.getElementById('resTotalSave').innerText = totalSave.toLocaleString() + '원';
+
+        document.getElementById('resultBox').classList.add('active');
+        document.getElementById('result-ad-box').style.display = 'block';
+        document.getElementById('guidesSection').style.display = 'block';
+        
+        setTimeout(() => { document.getElementById('resultBox').scrollIntoView({behavior: 'smooth', block: 'center'}); }, 100);
+    }
+
+    function shareKakao() {
+        const save = document.getElementById('resTotalSave').innerText;
+        Kakao.Share.sendDefault({
+            objectType: 'text',
+            text: `[태양광/전기차 절감액 계산기]\n우리집 예상 월간 절약 금액은?\n👉 ${save}`,
+            link: { mobileWebUrl: window.location.href, webUrl: window.location.href },
+            buttonTitle: '절감액 직접 계산해보기'
+        });
+    }
+
+    function resetForm() {
+        document.getElementById('resultBox').classList.remove('active');
+        document.getElementById('result-ad-box').style.display = 'none';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+</script>
+</body>
+</html>

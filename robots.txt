@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://solar.enjoy-onepage.com/sitemap.xml

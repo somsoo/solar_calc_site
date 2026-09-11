@@ -1,62 +1,217 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="index, follow">
-    <title>전기차 충전요금 완벽 비교 | 환경부 vs 한전 vs 집밥</title>
-    <meta name="description" content="전기차(EV) 충전요금이 가장 저렴한 곳은 어디일까요? 환경부 공용 충전기와 한전 아파트 충전기 요금을 비교해 드립니다.">
-    <link rel="canonical" href="https://solar.enjoy-onepage.com/guides/ev-charging.html">
-    <link rel="icon" href="../favicon.ico">
-    <meta property="og:title" content="전기차 충전요금 가장 저렴한 곳은?">
-    <meta property="og:description" content="집밥, 한전, 환경부 충전기 요금을 비교하고 전기차 유지비를 아끼세요.">
-    <style>
-        :root{--primary:#2E7D32;--primary-light:#E8F5E9;--bg:#F4F7F6;--text:#2C3E50;--light:#7F8C8D;--border:#C8E6C9;--box:#FFFFFF;--highlight:#F57C00;}
-        *{box-sizing:border-box;}
-        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0;}
-        .container{margin:0 auto;max-width:500px;width:100%;min-height:100vh;background:var(--box);padding:20px;box-shadow:0 0 20px rgba(46,125,50,.08);}
-        .nav-btn{display:inline-block;padding:7px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);font-size:0.82rem;font-weight:bold;margin-bottom:14px;}
-        h1{font-size:1.35rem;margin:0 0 16px;line-height:1.35;}
-        h2{font-size:1.1rem;margin:26px 0 10px;color:var(--primary);}
-        p{font-size:0.92rem;line-height:1.7;margin:0 0 12px;}
-        .highlight-box{background:var(--primary-light);border-left:4px solid var(--primary);padding:14px;border-radius:0 10px 10px 0;margin:14px 0;font-size:0.9rem;}
-        .ad-box{width:100%;min-height:90px;margin:20px 0;background:var(--box);text-align:center;border-radius:12px;overflow:hidden;}
-        
-        .cta-btn{display:block;padding:15px;background:var(--primary);color:#fff;border-radius:12px;font-size:1rem;font-weight:bold;text-align:center;text-decoration:none;margin:20px 0 10px;}
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>태양광 설치비용 회수기간 일사량 발전시간</title>
+  <meta name="description" content="100kW 기준 설치비 얼마? 봄·가을 최적 일사량과 원금 회수 5~7년 시뮬레이션 분석." />
+  <meta name="keywords" content="태양광 설치비용 회수기간, 태양광 발전시간, 일사량 기준, 모듈 인버터 수명" />
+  <meta name="theme-color" content="#eab308" />
+  <link rel="icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary: #eab308;
+      --dark: #a16207;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      padding-bottom: 60px;
+    }
+    .nav-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .nav-bar a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 30px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .guide-hero-img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      display: block;
+      border: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 1.65rem;
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+    .meta-tag {
+      display: inline-block;
+      background: #f1f5f9;
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .guide-section {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .guide-section h2 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .guide-section p {
+      color: #334155;
+      font-size: 1.02rem;
+      margin-bottom: 14px;
+      word-break: keep-all;
+    }
+    .callout {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 16px 18px;
+      border-radius: 6px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+    .callout strong { color: var(--dark); }
+    .faq-item {
+      background: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+    .faq-item h3 {
+      font-size: 1.05rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #475569;
+    }
+    .ad-wrap {
+      margin: 30px 0;
+      min-height: 100px;
+      background: #f8fafc;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .home-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 30px;
+      font-size: 1.05rem;
+    }
+    .home-btn:hover { opacity: 0.95; }
+  </style>
 </head>
 <body>
-<div class="container">
-    <a href="../index.html" class="nav-btn">← 💰 계산기로 돌아가기</a>
-    <h1>⚡ 전기차 충전요금 가장 싼 곳은 어디일까?</h1>
-    <p>전기차(EV)를 구매하기 전에 가장 걱정하는 것이 바로 '충전 요금'입니다. 내연기관차(가솔린/디젤)보다는 무조건 싸지만, <strong>어디서 어떻게 충전하느냐</strong>에 따라 요금 차이가 2배 이상 벌어집니다.</p>
-
-    <!-- 광고 1 -->
-    <div class="ad-box">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="2881798257" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <h2>1. 압도적 가성비 '집밥' (완속 충전기)</h2>
-    <p>아파트 지하주차장이나 단독주택에 설치된 완속 충전기(일명 '집밥')가 <strong>가장 저렴합니다.</strong> 특히 밤 11시 이후의 심야 시간대(경부하 시간)에 충전하면 1kWh당 100~200원 내외로 충전이 가능하여 내연기관 대비 유지비를 1/5 이하로 줄일 수 있습니다.</p>
-
-    <h2>2. 환경부 등 공공 급속 충전기</h2>
-    <p>고속도로 휴게소나 공영주차장에 있는 급속 충전기는 요금이 다소 비쌉니다. 1kWh당 약 320~350원 선으로, '집밥'보다 2배가량 비싸지만 여전히 가솔린 대비 절반 수준입니다.</p>
-
-    <!-- 광고 2 -->
-    <div class="ad-box">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3205181558" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+  <div class="nav-bar">
+    <a href="../index.html">← 태양광 발전 수익 계산기 바로가기</a>
+    <span style="font-size:0.85rem; color:#94a3b8;">실무 가이드</span>
+  </div>
+  
+  <div class="container">
+    <img src="../images/guide2.webp" alt="태양광 발전 설비 설치비용 분석 및 원금 회수 시뮬레이션" class="guide-hero-img" loading="lazy" />
+    <span class="meta-tag">검증된 실무 정보 · 2026 최신 개정판</span>
+    <h1>태양광 발전소 설치비용과 투자 원금 회수 기간 분석</h1>
     
-    <h2>💡 태양광 + 전기차의 미친 시너지</h2>
-    <p>단독주택에 3kW 가정용 태양광을 설치한 후, 한낮에 태양광 발전이 한창일 때 전기차를 충전하면 어떻게 될까요? 누진제를 상쇄할 뿐만 아니라 사실상 <strong>기름값을 0원에 수렴</strong>하게 만드는 마법이 펼쳐집니다.</p>
+    <!-- Ad Slot Middle -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
-    <a href="../index.html" class="cta-btn">💰 내 예상 절약 금액 계산해보기</a>
-</div>
+    
+        <section class="guide-section">
+            <h2>초기 시공비와 핵심 자재(모듈·인버터) 비용 분석</h2>
+            <p>100kW 상업용 발전소 기준 시공비는 토목, 구조물, 양면형 N타입 모듈, 인버터, 한전 계통연계비(인입비)를 포함해 약 1억~1억 2천만 원 내외입니다. 이 중 약 70~80%는 금융권 시설자금 대출로 조달하는 것이 일반적입니다.</p>
+            <div class='callout'><strong>핵심 수명:</strong> 태양광 모듈 수명은 25~30년(출력 보증), 인버터는 10~15년 주기로 1회 교체가 필요합니다.</div>
+        </section>
+        
+        <section class="guide-section">
+            <h2>우리나라 지역별 평균 발전시간(3.4 ~ 3.8시간)</h2>
+            <p>한국에너지공단 통계에 따르면 국내 평균 발전시간은 연평균 3.6시간입니다. 남부 지방(전남, 경남)이 일조량이 풍부해 중부 지방보다 유리하며, 여름 장마철과 겨울 폭설기를 제외한 봄(4~5월)과 가을(9~10월)이 가장 발전 효율이 높습니다.</p>
+            
+        </section>
+        
 
+    <div class="guide-section">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      
+        <div class="faq-item">
+            <h3>Q. 원금 회수까지 정확히 몇 년이 걸리나요?</h3>
+            <p>A. 지붕형 100kW 기준 대출금 상환을 병행할 경우 통상 5년~6.5년 사이에 초기 투자비가 완전히 회수되며, 이후 20년 이상 안정적인 연금형 수익이 발생합니다.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Q. 농촌 태양광은 정부 저리 융자가 가능한가요?</h3>
+            <p>A. 농업인 자격을 갖춘 경우 연 1.75%대 저금리 농촌 태양광 금융지원사업 융자를 통해 시공비의 최대 90%까지 지원받을 수 있습니다.</p>
+        </div>
+        
+    </div>
+
+    <!-- Ad Slot Bottom -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <a href="../index.html" class="home-btn">태양광 발전 수익 계산기 계산기 이용하기</a>
+  </div>
 </body>
 </html>
-

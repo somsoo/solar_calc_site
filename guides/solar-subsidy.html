@@ -1,68 +1,217 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="index, follow">
-    <title>정부/지자체 태양광 보조금 신청 총정리 | 무상 설치 꿀팁</title>
-    <meta name="description" content="가정용 태양광 설치 시 정부 및 지자체 보조금을 지원받아 초기 비용을 획기적으로 줄이는 방법을 정리했습니다.">
-    <link rel="canonical" href="https://solar.enjoy-onepage.com/guides/solar-subsidy.html">
-    <link rel="icon" href="../favicon.ico">
-    <meta property="og:title" content="태양광 보조금 받고 0원에 설치하기">
-    <meta property="og:description" content="우리 동네 태양광 보조금 지원 조건과 신청 방법을 확인하세요.">
-    <style>
-        :root{--primary:#2E7D32;--primary-light:#E8F5E9;--bg:#F4F7F6;--text:#2C3E50;--light:#7F8C8D;--border:#C8E6C9;--box:#FFFFFF;--highlight:#F57C00;}
-        *{box-sizing:border-box;}
-        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0;}
-        .container{margin:0 auto;max-width:500px;width:100%;min-height:100vh;background:var(--box);padding:20px;box-shadow:0 0 20px rgba(46,125,50,.08);}
-        .nav-btn{display:inline-block;padding:7px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);font-size:0.82rem;font-weight:bold;margin-bottom:14px;}
-        h1{font-size:1.35rem;margin:0 0 16px;line-height:1.35;}
-        h2{font-size:1.1rem;margin:26px 0 10px;color:var(--primary);}
-        p{font-size:0.92rem;line-height:1.7;margin:0 0 12px;}
-        .highlight-box{background:var(--primary-light);border-left:4px solid var(--primary);padding:14px;border-radius:0 10px 10px 0;margin:14px 0;font-size:0.9rem;}
-        .ad-box{width:100%;min-height:90px;margin:20px 0;background:var(--box);text-align:center;border-radius:12px;overflow:hidden;}
-        
-        .cta-btn{display:block;padding:15px;background:var(--primary);color:#fff;border-radius:12px;font-size:1rem;font-weight:bold;text-align:center;text-decoration:none;margin:20px 0 10px;}
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>태양광 발전 수익 계산 SMP REC 이원화 구조</title>
+  <meta name="description" content="한전에 파는 전기(SMP)와 신재생에너지 공급인증서(REC)! 태양광 사업자 월 수익 계산 공식." />
+  <meta name="keywords" content="태양광 발전 수익 계산, SMP 가격, REC 가격, 태양광 발전소 수익" />
+  <meta name="theme-color" content="#eab308" />
+  <link rel="icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary: #eab308;
+      --dark: #a16207;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      padding-bottom: 60px;
+    }
+    .nav-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .nav-bar a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 30px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .guide-hero-img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      display: block;
+      border: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 1.65rem;
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+    .meta-tag {
+      display: inline-block;
+      background: #f1f5f9;
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .guide-section {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .guide-section h2 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .guide-section p {
+      color: #334155;
+      font-size: 1.02rem;
+      margin-bottom: 14px;
+      word-break: keep-all;
+    }
+    .callout {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 16px 18px;
+      border-radius: 6px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+    .callout strong { color: var(--dark); }
+    .faq-item {
+      background: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+    .faq-item h3 {
+      font-size: 1.05rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #475569;
+    }
+    .ad-wrap {
+      margin: 30px 0;
+      min-height: 100px;
+      background: #f8fafc;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .home-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 30px;
+      font-size: 1.05rem;
+    }
+    .home-btn:hover { opacity: 0.95; }
+  </style>
 </head>
 <body>
-<div class="container">
-    <a href="../index.html" class="nav-btn">← 💰 계산기로 돌아가기</a>
-    <h1>☀️ 가정용 태양광 보조금 총정리</h1>
-    <p>태양광 패널, 내 돈 다 주고 설치하면 호구입니다. 정부와 지자체에서 지원하는 보조금만 잘 챙겨도 <strong>설치 비용을 최대 80%까지 절감</strong>할 수 있습니다.</p>
+  <div class="nav-bar">
+    <a href="../index.html">← 태양광 발전 수익 계산기 바로가기</a>
+    <span style="font-size:0.85rem; color:#94a3b8;">실무 가이드</span>
+  </div>
+  
+  <div class="container">
+    <img src="../images/guide1.webp" alt="태양광 발전 사업 수익 구조 SMP와 REC 복합 정산도" class="guide-hero-img" loading="lazy" />
+    <span class="meta-tag">검증된 실무 정보 · 2026 최신 개정판</span>
+    <h1>태양광 발전 수익 공식: SMP와 REC로 결정되는 월 매출 구조</h1>
     
-    <div class="highlight-box">
-        💡 <strong>핵심 요약</strong><br>
-        • 한국에너지공단 보조금 + 지자체 추가 보조금 이중 수령 가능<br>
-        • 아파트 베란다 미니 태양광(300W)은 본인 부담금 5~10만 원 선
+    <!-- Ad Slot Middle -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- 광고 1 -->
-    <div class="ad-box">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="2881798257" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <h2>1. 주택용 태양광 (3kW) 보조금</h2>
-    <p>단독주택 옥상이나 지붕에 설치하는 3kW급 가정용 태양광의 경우, 보통 설치비가 500~600만 원 정도입니다. 하지만 매년 봄에 열리는 '주택지원사업'에 신청하여 선정되면 <strong>정부 보조금 약 200만 원 + 지자체 보조금 약 100만 원</strong>을 지원받아 실제 자부담금은 200만 원 대까지 떨어집니다.</p>
-
-    <h2>2. 아파트 베란다 미니 태양광 (300W)</h2>
-    <p>아파트 베란다에 설치하는 미니 태양광은 지자체에서 강력하게 밀고 있는 사업입니다. <strong>전체 설치비의 80% 이상을 구청/시청에서 지원</strong>하여, 주민은 보통 5~10만 원 정도만 내면 설치가 가능합니다.</p>
-
-    <!-- 광고 2 -->
-    <div class="ad-box">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3205181558" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <h2>⚠️ 주의사항 및 사기 예방</h2>
-    <p>"정부 지원 100% 무상 설치"라고 현혹하며 접근하는 업체는 대부분 <strong>대출을 끼워 파는 사기(렌탈 사기)</strong>일 확률이 매우 높습니다. 반드시 한국에너지공단 '참여기업'으로 등록된 정식 업체를 통해서만 계약해야 피해를 막을 수 있습니다.</p>
     
-    <a href="../index.html" class="cta-btn">💰 내 예상 전기요금 절감액 계산하기</a>
-</div>
+        <section class="guide-section">
+            <h2>태양광 발전 수익의 두 기둥: 전력판매(SMP) + 인증서(REC)</h2>
+            <p>태양광 발전소의 총매출은 1) 한국전력에 실제로 생산한 전기를 판매하는 전력시장가격(SMP)과 2) 대형 발전사에 신재생에너지 공급인증서를 판매하는 REC 수익의 합으로 결정됩니다. [총수익 = 발전량 × (SMP + REC × 가중치)]</p>
+            <div class='callout'><strong>가중치 혜택:</strong> 건물 옥상이나 지붕 위에 설치하면 토지(1.0)보다 높은 1.5배의 REC 가중치가 부여되어 수익성이 극대화됩니다.</div>
+        </section>
+        
+        <section class="guide-section">
+            <h2>100kW 발전소 기준 현실적인 월 순수익 시뮬레이션</h2>
+            <p>하루 평균 일사 발전시간을 3.6시간으로 잡았을 때 100kW 발전소의 월 발전량은 약 10,800kWh입니다. SMP가 kWh당 130원, REC가 70원 수준이라면 월 약 200~230만 원 선의 매출이 발생하며, 유지관리비와 안전관리자 선임비를 제외한 금액이 순수익이 됩니다.</p>
+            
+        </section>
+        
 
+    <div class="guide-section">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      
+        <div class="faq-item">
+            <h3>Q. SMP 가격 변동 위험을 막는 방법은 없나요?</h3>
+            <p>A. 한국형 FIT나 신재생에너지 고정가격계약 입찰에 참여하면 20년간 확정 단가로 전력을 매입해주어 가격 변동 리스크가 없습니다.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>Q. 비가 오거나 흐린 날에는 발전이 전혀 안 되나요?</h3>
+            <p>A. 흐린 날에도 맑은 날의 20~40%, 비 오는 날에도 10% 내외의 산란광을 흡수하여 발전이 이루어집니다.</p>
+        </div>
+        
+    </div>
+
+    <!-- Ad Slot Bottom -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <a href="../index.html" class="home-btn">태양광 발전 수익 계산기 계산기 이용하기</a>
+  </div>
 </body>
 </html>
-

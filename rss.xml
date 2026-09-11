@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>태양광/전기차(EV) 유지비 및 절감액 계산기</title>
+    <link>https://solar.enjoy-onepage.com/</link>
+    <description>우리집 태양광 설치 시 전기요금 절감액과 전기차 유지비 절약 금액을 10초 만에 정확하게 계산해 보세요.</description>
+    <language>ko-KR</language>
+    <lastBuildDate>Sat, 12 Sep 2026 03:00:00 +0900</lastBuildDate>
+    <atom:link href="https://solar.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>태양광/전기차(EV) 유지비 및 절감액 계산기</title>
+      <link>https://solar.enjoy-onepage.com/</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/</guid>
+      <description>우리집 태양광 설치 시 전기요금 절감액과 전기차 유지비 절약 금액을 10초 만에 정확하게 계산해 보세요.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>서비스 소개 및 산출 공식 | 태양광 발전 절감 계산기</title>
+      <link>https://solar.enjoy-onepage.com/about.html</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/about.html</guid>
+      <description>태양광/전기차(EV) 유지비 및 절감액 계산기의 서비스 소개, 공식 법령 산출 수식 및 데이터 처리 원칙 안내입니다.</description>
+      <pubDate>Sat, 12 Sep 2026 01:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>개인정보처리방침 | 태양광/EV 계산기</title>
+      <link>https://solar.enjoy-onepage.com/privacy.html</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/privacy.html</guid>
+      <description>태양광/전기차(EV) 유지비 및 절감액 계산기의 개인정보 보호 정책, 쿠키 사용 및 브라우저 로컬 데이터 보안 원칙입니다.</description>
+      <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>태양광 설치비용 회수기간 일사량 발전시간</title>
+      <link>https://solar.enjoy-onepage.com/guides/ev-charging.html</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/guides/ev-charging.html</guid>
+      <description>100kW 기준 설치비 얼마? 봄·가을 최적 일사량과 원금 회수 5~7년 시뮬레이션 분석.</description>
+      <pubDate>Sat, 12 Sep 2026 02:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>태양광발전 완벽 해결 실무 가이드 및 핵심 요령 | 태양광 발전 절감 계산기</title>
+      <link>https://solar.enjoy-onepage.com/guides/guide1.html</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/guides/guide1.html</guid>
+      <description>태양광발전에 관한 법령 및 공식 산정 기준은 공공기관 훈령과 최신 개정 규정에 따르며, 개별 상황에 따라 적용 요율과 한도가 달라질 수...</description>
+      <pubDate>Sat, 12 Sep 2026 02:15:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>태양광 주의사항 및 2026년 최신 개정 기준 | 태양광 발전 절감 계산기</title>
+      <link>https://solar.enjoy-onepage.com/guides/guide2.html</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/guides/guide2.html</guid>
+      <description>태양광 관련 분쟁 예방을 위해서는 서면 합의서 및 공식 명세서를 보관하고, 모의 계산기를 통해 예상 결과를 교차 검증하는 절차가 필수적...</description>
+      <pubDate>Sat, 12 Sep 2026 02:30:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>한국형 FIT 태양광 계약 소형 사업자 20년 보장</title>
+      <link>https://solar.enjoy-onepage.com/guides/progressive-tax.html</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/guides/progressive-tax.html</guid>
+      <description>소형 태양광 사업자를 위한 20년 장기 고정가격계약! 한국형 FIT 자격 조건과 안정 수익.</description>
+      <pubDate>Sat, 12 Sep 2026 02:45:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>태양광 발전 수익 계산 SMP REC 이원화 구조</title>
+      <link>https://solar.enjoy-onepage.com/guides/solar-subsidy.html</link>
+      <guid isPermaLink="true">https://solar.enjoy-onepage.com/guides/solar-subsidy.html</guid>
+      <description>한전에 파는 전기(SMP)와 신재생에너지 공급인증서(REC)! 태양광 사업자 월 수익 계산 공식.</description>
+      <pubDate>Sat, 12 Sep 2026 03:00:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>

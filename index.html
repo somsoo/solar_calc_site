@@ -19,16 +19,58 @@
 <link href="favicon.ico" rel="icon"/>
 <!-- JSON-LD -->
 <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "태양광 및 전기차 비용/절감액 계산기",
+      "@id": "https://solar.enjoy-onepage.com/#webapp",
+      "name": "태양광 / 전기차(EV) 절감액 계산기",
       "url": "https://solar.enjoy-onepage.com/",
-      "description": "가정용 태양광(3kW, 300W) 설치 및 전기차(EV) 운행 시 월간 유지비와 전기요금 절감액을 계산합니다.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All"
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "우리집 태양광 설치 시 전기요금 절감액과 전기차 유지비 절약 금액을 10초 만에 정확하게 계산해 보세요.",
+      "image": "https://solar.enjoy-onepage.com/og-image.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://solar.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "비가 오거나 흐린 날, 겨울철에도 발전이 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, 흐린 날은 맑은 날의 20~30%, 비 오는 날은 10~15% 수준으로 발전되며, 연간 평균 일조시간(3.2~3.5시간)으로 총 발전량을 계산합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "태양광 패널의 수명과 효율 저하는 어떻게 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "태양광 모듈은 20~25년간 작동하며 매년 약 0.5%씩 서서히 효율이 감소합니다. 인버터는 약 7~10년 주기 교체가 권장됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "아파트 베란다에도 3kW 설비를 설치할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "3kW는 단독주택 옥상(약 4~5평)에 적합하며, 아파트 베란다는 소형 미니 태양광(300~400W급) 거치대를 주로 설치합니다."
+          }
+        }
+      ]
     }
-    </script>
+  ]
+}
+  </script>
 <style>
         :root {
             --primary: #2E7D32;

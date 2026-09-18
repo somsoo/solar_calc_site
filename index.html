@@ -593,7 +593,6 @@
 
         document.getElementById('resultBox').classList.add('active');
         const ig = document.getElementById('initialGuideBox'); if(ig) ig.style.display='none';
-        const rad = document.getElementById('result-ad-box'); if(rad) rad.style.display = 'block';
         const gs = document.getElementById('guidesSection'); if(gs) gs.style.display = 'block';
         
         setTimeout(() => { document.getElementById('resultBox').scrollIntoView({behavior: 'smooth', block: 'center'}); }, 100);
@@ -631,7 +630,6 @@
     function resetForm() {
         document.getElementById('resultBox').classList.remove('active');
         const ig = document.getElementById('initialGuideBox'); if(ig) ig.style.display='block';
-        const rad = document.getElementById('result-ad-box'); if(rad) rad.style.display = 'none';
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 </script>

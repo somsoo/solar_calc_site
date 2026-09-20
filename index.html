@@ -266,15 +266,15 @@
 <h1>태양광 / 전기차(EV) 절감액 계산기</h1>
 <p>우리집 태양광을 설치하면 전기요금이 얼마나 줄어들까?<br/>전기차 유지비는 한 달에 얼마일까?</p>
 </div>
-<div class="solar-grid">
+<div class="solar-grid grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 <!-- Left Column: Input Form -->
-<div class="solar-left">
+<div class="solar-left lg:col-span-6 w-full">
 <h3 style="margin-top:0; margin-bottom:15px; font-size:1.1rem; color:var(--primary);">⚡ 전기 사용 정보 입력</h3>
 <div class="input-group">
 <label>거주 형태 (태양광 종류)</label>
 <div class="toggle-group" id="homeType">
-<div class="toggle-btn active" onclick="setHomeType('apt')">아파트 (300W)</div>
-<div class="toggle-btn" onclick="setHomeType('house')">단독주택 (3kW)</div>
+<div class="toggle-btn active py-3 min-h-[44px]" onclick="setHomeType('apt')">아파트 (300W)</div>
+<div class="toggle-btn py-3 min-h-[44px]" onclick="setHomeType('house')">단독주택 (3kW)</div>
 </div>
 </div>
 <div class="input-group">
@@ -287,8 +287,8 @@
 <div class="input-group">
 <label>전기차(EV) 운행 여부</label>
 <div class="toggle-group" id="evToggle">
-<div class="toggle-btn active" onclick="setEvType('no')">전기차 없음</div>
-<div class="toggle-btn" onclick="setEvType('yes')">전기차 운행 중</div>
+<div class="toggle-btn active py-3 min-h-[44px]" onclick="setEvType('no')">전기차 없음</div>
+<div class="toggle-btn py-3 min-h-[44px]" onclick="setEvType('yes')">전기차 운행 중</div>
 </div>
 </div>
 <div class="input-group" id="evKmGroup" style="display: none;">
@@ -298,10 +298,10 @@
 </div>
 <p class="help-text">내연기관차 대비 월간 연료비 절감액을 계산해 드립니다.</p>
 </div>
-<button class="btn-calc whitespace-nowrap" onclick="calculateAll()">💸 예상 절감액 확인하기</button>
+<button class="btn-calc whitespace-nowrap py-3 min-h-[44px]" onclick="calculateAll()">💸 예상 절감액 확인하기</button>
 </div>
 <!-- Right Column: Results & Initial Prompt -->
-<div class="solar-right">
+<div class="solar-right lg:col-span-6 lg:sticky lg:top-8 w-full">
 <!-- 결과 박스 -->
 <div class="result-box" id="resultBox">
 <div class="res-header">
@@ -328,10 +328,10 @@
                     • 주택용 누진제 구조 특성상, 평소 전기 사용량이 많을수록 <strong>태양광 설치 시 요금 절감 효과가 기하급수적으로 커집니다.</strong><br/>
                     • 본 계산은 한국전력 평균 단가를 기준으로 한 모의 계산이며 계절 및 충전기 환경에 따라 오차가 있을 수 있습니다.
                 </div>
-<div class="action-btns">
-<button class="btn-share whitespace-nowrap" onclick="shareResult()">결과 공유하기</button>
-<button class="btn-reset whitespace-nowrap" onclick="copyResult()">링크 복사</button>
-<button class="btn-reset whitespace-nowrap" onclick="resetForm()">다시 계산</button>
+<div class="action-btns py-3 min-h-[44px]">
+<button class="btn-share whitespace-nowrap py-3 min-h-[44px]" onclick="shareResult()">결과 공유하기</button>
+<button class="btn-reset whitespace-nowrap py-3 min-h-[44px]" onclick="copyResult()">링크 복사</button>
+<button class="btn-reset whitespace-nowrap py-3 min-h-[44px]" onclick="resetForm()">다시 계산</button>
 </div>
 </div>
 <div id="initialGuideBox" style="background:#F9FAFB; border:1px dashed #D1D5DB; border-radius:16px; padding:30px 20px; text-align:center; color:#6B7280;">

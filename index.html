@@ -555,10 +555,10 @@
 
         const totalSave = elecRes.solarSave + evSave;
 
-        document.getElementById('resOldBill').innerText = elecRes.oldBill.toLocaleString() + '원';
-        document.getElementById('resNewBill').innerText = elecRes.newBill.toLocaleString() + '원';
-        document.getElementById('resEvSave').innerText = '+ ' + evSave.toLocaleString() + '원';
-        document.getElementById('resTotalSave').innerText = totalSave.toLocaleString() + '원';
+        document.getElementById('resOldBill').textContent = elecRes.oldBill.toLocaleString() + '원';
+        document.getElementById('resNewBill').textContent = elecRes.newBill.toLocaleString() + '원';
+        document.getElementById('resEvSave').textContent = '+ ' + evSave.toLocaleString() + '원';
+        document.getElementById('resTotalSave').textContent = totalSave.toLocaleString() + '원';
 
         document.getElementById('resultBox').classList.add('active');
         const ig = document.getElementById('initialGuideBox'); if(ig) ig.style.display='none';

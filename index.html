@@ -270,6 +270,85 @@
   .ad-bottom { min-height: 280px !important; }
   .ad-bottom ins { min-height: 280px !important; }
 </style>
+<style id="solar-modern-enhancements">
+  /* 2026 Solar & EV Calculator Modern UI Enhancements */
+  .quick-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+  }
+  .quick-chip {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .quick-chip:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  .quick-chip:active {
+    background: #16a34a;
+    color: #ffffff;
+    border-color: #15803d;
+  }
+  .stat-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+  }
+  .stat-mini-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 10px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .stat-mini-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .stat-mini-val {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1e293b;
+    word-break: keep-all;
+  }
+  .stat-mini-val.green {
+    color: #15803d;
+  }
+  .btn-png {
+    background: #0f172a !important;
+    color: #ffffff !important;
+  }
+  .btn-png:hover {
+    background: #1e293b !important;
+  }
+  .action-btns {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  @media (max-width: 480px) {
+    .action-btns {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 </head>
 <body>
 <!-- 상단 슬림 띠배너 (헤더 직하단: 50~60px 슬림형) -->
@@ -298,7 +377,14 @@
 <div class="input-group">
 <label>현재 월 평균 전기요금</label>
 <div class="input-wrapper">
-<input id="elecBill" placeholder="예: 65000" type="number" min="0" aria-label="예: 65000" / inputmode="numeric">
+<input id="elecBill" placeholder="예: 65000" type="number" min="0" aria-label="예: 65000" inputmode="numeric">
+</div>
+<div class="quick-chips" aria-label="전기요금 빠른 선택">
+  <button type="button" class="quick-chip" onclick="setBillPreset(30000)">3만 원</button>
+  <button type="button" class="quick-chip" onclick="setBillPreset(50000)">5만 원</button>
+  <button type="button" class="quick-chip" onclick="setBillPreset(70000)">7만 원</button>
+  <button type="button" class="quick-chip" onclick="setBillPreset(100000)">10만 원</button>
+  <button type="button" class="quick-chip" onclick="setBillPreset(150000)">15만 원</button>
 </div>
 <p class="help-text">여름/겨울을 제외한 봄/가을 평균 요금을 입력하면 정확합니다.</p>
 </div>
@@ -312,7 +398,12 @@
 <div class="input-group" id="evKmGroup" style="display: none;">
 <label>전기차 월 평균 주행거리 (km)</label>
 <div class="input-wrapper">
-<input id="evKm" placeholder="예: 1500" type="number" min="0" aria-label="예: 1500" / inputmode="numeric">
+<input id="evKm" placeholder="예: 1500" type="number" min="0" aria-label="예: 1500" inputmode="numeric">
+</div>
+<div class="quick-chips" aria-label="주행거리 빠른 선택">
+  <button type="button" class="quick-chip" onclick="setKmPreset(800)">800km (출퇴근)</button>
+  <button type="button" class="quick-chip" onclick="setKmPreset(1500)">1,500km (평균)</button>
+  <button type="button" class="quick-chip" onclick="setKmPreset(2500)">2,500km (장거리)</button>
 </div>
 <p class="help-text">내연기관차 대비 월간 연료비 절감액을 계산해 드립니다.</p>
 </div>
@@ -341,15 +432,34 @@
 <span class="res-label" style="color:#1B5E20; font-weight:bold;">💰 총 월간 절약 금액</span>
 <span class="res-val val-highlight" id="resTotalSave" style="color:#1B5E20;">0원</span>
 </div>
+<div class="stat-grid-2">
+  <div class="stat-mini-card">
+    <div class="stat-mini-label">📅 연간 절약 추산액</div>
+    <div class="stat-mini-val green" id="resAnnualSave">0원</div>
+  </div>
+  <div class="stat-mini-card">
+    <div class="stat-mini-label">⏳ 10년 누적 절약액</div>
+    <div class="stat-mini-val green" id="res10yrSave">0원</div>
+  </div>
+  <div class="stat-mini-card">
+    <div class="stat-mini-label">🌱 연간 CO₂ 감축량</div>
+    <div class="stat-mini-val" id="resCo2Kg">0 kg</div>
+  </div>
+  <div class="stat-mini-card">
+    <div class="stat-mini-label">🌲 소나무 식재 효과</div>
+    <div class="stat-mini-val" id="resTrees">0 그루</div>
+  </div>
+</div>
 <div class="alert-box">
 <strong>🌱 에코 재테크 포인트</strong><br/>
                     • 주택용 누진제 구조 특성상, 평소 전기 사용량이 많을수록 <strong>태양광 설치 시 요금 절감 효과가 기하급수적으로 커집니다.</strong><br/>
                     • 본 계산은 한국전력 평균 단가를 기준으로 한 모의 계산이며 계절 및 충전기 환경에 따라 오차가 있을 수 있습니다.
                 </div>
 <div class="action-btns py-3 min-h-[44px]">
-<button class="btn-share whitespace-nowrap py-3 min-h-[44px]" onclick="shareResult()">결과 공유하기</button>
-<button class="btn-reset whitespace-nowrap py-3 min-h-[44px]" onclick="copyResult()">링크 복사</button>
-<button class="btn-reset whitespace-nowrap py-3 min-h-[44px]" onclick="resetForm()">다시 계산</button>
+<button class="btn-png whitespace-nowrap py-3 min-h-[44px]" onclick="downloadSolarReportPNG()">📥 분석표(PNG) 저장</button>
+<button class="btn-share whitespace-nowrap py-3 min-h-[44px]" onclick="copyResult()">📋 견적 복사</button>
+<button class="btn-reset whitespace-nowrap py-3 min-h-[44px]" onclick="shareResult()">📤 공유하기</button>
+<button class="btn-reset whitespace-nowrap py-3 min-h-[44px]" onclick="resetForm()">🔄 다시 계산</button>
 </div>
 </div>
 <div id="initialGuideBox" style="background:#F9FAFB; border:1px dashed #D1D5DB; border-radius:16px; padding:30px 20px; text-align:center; color:#6B7280;">
@@ -554,11 +664,21 @@
         }
 
         const totalSave = elecRes.solarSave + evSave;
+        const annualSave = totalSave * 12;
+        const tenYrSave = annualSave * 10;
+        const solarGenKwh = (currentHome === 'apt' ? 35 : 300) * 12;
+        const co2Kg = Math.round(solarGenKwh * 0.44);
+        const trees = Math.round(co2Kg / 6.6);
 
         document.getElementById('resOldBill').textContent = elecRes.oldBill.toLocaleString() + '원';
         document.getElementById('resNewBill').textContent = elecRes.newBill.toLocaleString() + '원';
         document.getElementById('resEvSave').textContent = '+ ' + evSave.toLocaleString() + '원';
         document.getElementById('resTotalSave').textContent = totalSave.toLocaleString() + '원';
+
+        const elAnnual = document.getElementById('resAnnualSave'); if(elAnnual) elAnnual.textContent = annualSave.toLocaleString() + '원';
+        const el10yr = document.getElementById('res10yrSave'); if(el10yr) el10yr.textContent = tenYrSave.toLocaleString() + '원';
+        const elCo2 = document.getElementById('resCo2Kg'); if(elCo2) elCo2.textContent = co2Kg.toLocaleString() + ' kg';
+        const elTrees = document.getElementById('resTrees'); if(elTrees) elTrees.textContent = '약 ' + trees.toLocaleString() + '그루';
 
         document.getElementById('resultBox').classList.add('active');
         const ig = document.getElementById('initialGuideBox'); if(ig) ig.style.display='none';
@@ -567,15 +687,204 @@
         setTimeout(() => { document.getElementById('resultBox').scrollIntoView({behavior: 'smooth', block: 'center'}); }, 100);
     }
 
+    function setBillPreset(val) {
+        document.getElementById('elecBill').value = val;
+        calculateAll();
+    }
+
+    function setKmPreset(val) {
+        document.getElementById('evKm').value = val;
+        calculateAll();
+    }
+
     function copyResult() {
-        const save = document.getElementById('resTotalSave') ? document.getElementById('resTotalSave').innerText : '';
+        const homeName = currentHome === 'apt' ? '아파트 (300W 미니태양광)' : '단독주택 (3kW 주택용 태양광)';
+        const oldBill = document.getElementById('resOldBill') ? document.getElementById('resOldBill').innerText : '';
+        const newBill = document.getElementById('resNewBill') ? document.getElementById('resNewBill').innerText : '';
+        const evSave = document.getElementById('resEvSave') ? document.getElementById('resEvSave').innerText : '';
+        const totalSave = document.getElementById('resTotalSave') ? document.getElementById('resTotalSave').innerText : '';
+        const annualSave = document.getElementById('resAnnualSave') ? document.getElementById('resAnnualSave').innerText : '';
+        const tenYr = document.getElementById('res10yrSave') ? document.getElementById('res10yrSave').innerText : '';
+        const co2 = document.getElementById('resCo2Kg') ? document.getElementById('resCo2Kg').innerText : '';
+        const trees = document.getElementById('resTrees') ? document.getElementById('resTrees').innerText : '';
         const url = window.location.href;
-        const text = `[태양광/전기차 절감액 계산기]\n우리집 예상 월간 절약 금액: ${save}\n내 집 전기요금 절감액 직접 확인하기:\n${url}`;
-        navigator.clipboard.writeText(text).then(() => {
-            alert('계산 결과 링크가 복사되었습니다!');
-        }).catch(() => {
-            alert('복사에 실패했습니다. 브라우저 주소창의 링크를 복사해주세요.');
+
+        let txt = `[태양광 & 전기차 절감액 분석 견적서]\n` +
+                  `• 설치 형태: ${homeName}\n` +
+                  `• 기존 전기요금: ${oldBill} → 설치 후: ${newBill}\n`;
+        if (currentEv === 'yes') {
+            txt += `• 전기차 연료비 절약: ${evSave}\n`;
+        }
+        txt += `• 월간 총 절약액: ${totalSave}\n` +
+               `• 연간 누적 절약액: ${annualSave}\n` +
+               `• 10년 누적 절약액: ${tenYr}\n` +
+               `• 친환경 기여: CO₂ ${co2} 감축 (소나무 ${trees} 효과)\n\n` +
+               `👉 내 집 태양광 절감액 직접 계산하기:\n${url}`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(txt).then(() => {
+                if (window.showToastNotification) {
+                    window.showToastNotification('상세 견적이 클립보드에 복사되었습니다! 📋');
+                } else {
+                    alert('상세 견적이 클립보드에 복사되었습니다!');
+                }
+            }).catch(() => alert('복사에 실패했습니다.'));
+        }
+    }
+
+    function downloadSolarReportPNG() {
+        const homeName = currentHome === 'apt' ? '아파트 (300W 미니태양광)' : '단독주택 (3kW 주택용 태양광)';
+        const bill = (parseInt(document.getElementById('elecBill').value) || 0).toLocaleString() + '원';
+        const evKm = currentEv === 'yes' ? (parseInt(document.getElementById('evKm').value) || 0).toLocaleString() + ' km' : '운행 안함';
+        const oldBill = document.getElementById('resOldBill') ? document.getElementById('resOldBill').innerText : '0원';
+        const newBill = document.getElementById('resNewBill') ? document.getElementById('resNewBill').innerText : '0원';
+        const evSave = document.getElementById('resEvSave') ? document.getElementById('resEvSave').innerText : '0원';
+        const totalSave = document.getElementById('resTotalSave') ? document.getElementById('resTotalSave').innerText : '0원';
+        const annualSave = document.getElementById('resAnnualSave') ? document.getElementById('resAnnualSave').innerText : '0원';
+        const tenYr = document.getElementById('res10yrSave') ? document.getElementById('res10yrSave').innerText : '0원';
+        const co2 = document.getElementById('resCo2Kg') ? document.getElementById('resCo2Kg').innerText : '0 kg';
+        const trees = document.getElementById('resTrees') ? document.getElementById('resTrees').innerText : '0그루';
+
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 960;
+        const ctx = canvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 800, 960);
+
+        // Header Gradient
+        const grad = ctx.createLinearGradient(0, 0, 800, 180);
+        grad.addColorStop(0, '#15803d');
+        grad.addColorStop(1, '#16a34a');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 800, 180);
+
+        // Header Title
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 30px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('☀️ 태양광 & 전기차 절감 분석 명세서', 400, 75);
+
+        ctx.font = '16px sans-serif';
+        ctx.fillStyle = '#bbf7d0';
+        ctx.fillText('친환경 에너지 발전 및 전기차 유지비 시뮬레이션 리포트', 400, 115);
+        ctx.fillText('solar.enjoy-onepage.com', 400, 145);
+
+        // Card 1: Input conditions
+        ctx.fillStyle = '#f8fafc';
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(40, 210, 720, 130, 12);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#475569';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('📋 시뮬레이션 기본 조건', 60, 245);
+
+        ctx.font = '15px sans-serif';
+        ctx.fillStyle = '#334155';
+        ctx.fillText(`• 거주 형태: ${homeName}`, 60, 280);
+        ctx.fillText(`• 월 평균 전기요금: ${bill}`, 60, 312);
+        ctx.fillText(`• 전기차 운행 여부: ${evKm}`, 420, 280);
+
+        // Card 2: Hero Monthly Savings
+        const heroGrad = ctx.createLinearGradient(40, 360, 760, 480);
+        heroGrad.addColorStop(0, '#f0fdf4');
+        heroGrad.addColorStop(1, '#dcfce7');
+        ctx.fillStyle = heroGrad;
+        ctx.strokeStyle = '#86efac';
+        ctx.beginPath();
+        ctx.roundRect(40, 360, 720, 130, 14);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#166534';
+        ctx.font = 'bold 18px sans-serif';
+        ctx.fillText('💰 예상 월간 총 절약 금액', 400, 400);
+
+        ctx.fillStyle = '#15803d';
+        ctx.font = 'bold 42px sans-serif';
+        ctx.fillText(totalSave, 400, 455);
+
+        // Card 3: Detailed Breakdown Table
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.beginPath();
+        ctx.roundRect(40, 510, 720, 220, 12);
+        ctx.fill();
+        ctx.stroke();
+
+        const rows = [
+            ['기존 월 전기요금', oldBill],
+            ['태양광 설치 후 예상요금', newBill],
+            ['전기차 연료비 절감액 (운행 시)', evSave],
+            ['연간 누적 절약액 (1년)', annualSave],
+            ['10년 장기 누적 절약액', tenYr]
+        ];
+
+        ctx.font = '15px sans-serif';
+        rows.forEach((r, idx) => {
+            const y = 550 + (idx * 36);
+            ctx.fillStyle = '#64748b';
+            ctx.textAlign = 'left';
+            ctx.fillText(r[0], 65, y);
+
+            ctx.fillStyle = idx >= 3 ? '#15803d' : '#1e293b';
+            ctx.font = idx >= 3 ? 'bold 16px sans-serif' : '15px sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(r[1], 735, y);
+
+            if (idx < rows.length - 1) {
+                ctx.strokeStyle = '#f1f5f9';
+                ctx.beginPath();
+                ctx.moveTo(60, y + 12);
+                ctx.lineTo(740, y + 12);
+                ctx.stroke();
+            }
         });
+
+        // Card 4: Eco Impact
+        ctx.fillStyle = '#f0fdf4';
+        ctx.strokeStyle = '#bbf7d0';
+        ctx.beginPath();
+        ctx.roundRect(40, 750, 720, 110, 12);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#166534';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.fillText('🌲 친환경 에코 임팩트 (연간 기준)', 65, 785);
+
+        ctx.font = '15px sans-serif';
+        ctx.fillStyle = '#15803d';
+        ctx.fillText(`• CO₂ 온실가스 감축: ${co2}`, 65, 825);
+        ctx.fillText(`• 어린 소나무 식재 효과: ${trees}`, 420, 825);
+
+        // Footer
+        ctx.textAlign = 'center';
+        ctx.font = '13px sans-serif';
+        ctx.fillStyle = '#94a3b8';
+        const today = new Date().toLocaleDateString('ko-KR');
+        ctx.fillText(`시뮬레이션 일자: ${today} • 한전 평균단가 기준 모의 계산 리포트 • solar.enjoy-onepage.com`, 400, 910);
+
+        // Download PNG
+        const a = document.createElement('a');
+        a.download = `태양광_절감분석_명세서_${Date.now()}.png`;
+        a.href = canvas.toDataURL('image/png');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        if (window.showToastNotification) {
+            window.showToastNotification('분석표(PNG)가 성공적으로 저장되었습니다! 📥');
+        }
     }
 
     async function shareResult() {
